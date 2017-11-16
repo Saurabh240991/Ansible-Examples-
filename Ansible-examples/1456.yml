@@ -1,0 +1,16 @@
+---
+- hosts: all
+  connection: local
+  tasks:
+  - name: Ansible find file examples
+    find:
+      paths: /home/u60945/
+      patterns: "*.sh"
+      age: 5d
+    register: files_matched
+
+  - name: Ansible remove file 
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ files_matched.files }}"

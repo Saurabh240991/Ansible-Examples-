@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: Get files in a folder
+    find:
+      paths: "home/u60945"
+    register: found_files
+
+  - name: Get latest file
+    set_fact:
+      latest_file: "{{ found_files.files | sort(attribute='mtime',reverse=true) | first }}"
+ 
+   
+ 
+
+

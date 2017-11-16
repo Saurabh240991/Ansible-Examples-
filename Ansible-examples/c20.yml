@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - shell: hostname
+      register: ps
+    - set_fact:
+        env_var: something
+      when: ps.stdout ==""
+    - debug: var=env_var   
+    - set_fact:
+        env_var: something
+      when: ps.stdout =="ip-172-31-13-132.us-east-2.compute.internal"
+    - debug: var=env_var          
+
+    - shell: grep {{ item }} /home/u60945/exit.txt
+      with_items:
+       - "one"
+       - "two"
+       - "three"
+       - "four"
+       - "ten"
+      register: echo
+      ignore_errors: true
+
+    - name: Fail if return code is not 0
+      debug:
+        msg: "The command ({{ item.cmd }}) did not have a 0 return code"
+      when: item.rc != 0
+      with_items: "{{ echo.results }}"
+          
+          
+

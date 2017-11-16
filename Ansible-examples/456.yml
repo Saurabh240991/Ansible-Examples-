@@ -1,0 +1,13 @@
+---
+- hosts: all
+  remote_user: root
+        
+  tasks:
+   - name: Check if file configuration file already exists.
+     stat: path=/home/u60945/test.txt
+     register: file_config_file
+  
+   - name: Install file repository
+     command: ansible-playbook /home/u60945/65.yml
+     when: (file_config_file.stat.exists == false)
+

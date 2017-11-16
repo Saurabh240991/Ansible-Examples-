@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  sudo: yes
+  pre_tasks:
+     - shell: echo 'I":" Beginning to configure web server..'
+         - name: testing the ansible 
+           include: 145.yml
+
+  post_tasks:
+     - shell: echo 'I":" Done configuring nginx web server...'
+

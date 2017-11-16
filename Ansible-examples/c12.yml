@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - shell: grep {{ item }} /home/u60945/exit.txt
+      with_items:
+       - one
+       - two
+       - three
+       - four
+      register: ps
+      ignore_errors: true
+
+    - debug: ps.stdout
+
+

@@ -1,0 +1,17 @@
+---
+- hosts: all
+  connection: local
+  tasks:
+  - name: list all Logs file for greater than 90 Days
+    find:
+      paths: /home/u60945/
+      patterns: "*.sh"
+      age: 90d
+    register: files_matched
+
+  - name: Removing all the file which is present more than 90 days.
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ files_matched.files }}"
+        

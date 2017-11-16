@@ -1,0 +1,6 @@
+---
+- hosts: all
+  remote_user: hadoop
+  tasks:
+  - name: copy files
+    copy: src=/home/u60945/60.sh dest=/tmp/new1.txt

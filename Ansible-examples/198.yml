@@ -1,0 +1,6 @@
+---
+- hosts: all
+vars:
+data: "{{ lookup('file', './saurabh.txt') }}"
+tasks:
+  - debug: msg="File contents {{ data }}"

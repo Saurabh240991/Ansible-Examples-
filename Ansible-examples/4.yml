@@ -1,0 +1,8 @@
+---
+- name: GIT Module
+  hosts: all
+  tasks:
+  - git:
+     repo: https://github.com/geerlingguy/ansible-role-svn.git
+     dest: /home/u60945/svn
+

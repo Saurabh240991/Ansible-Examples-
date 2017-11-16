@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  vars:
+    git_branch: "{{ GIT_BRANCH|default('develop') }}"
+    node_env: "{{ NODE_ENV|default('staging') }}"
+  tasks:
+    - command: echo "{{ node_env }}"
+    - command: echo "{{ git_branch }}"

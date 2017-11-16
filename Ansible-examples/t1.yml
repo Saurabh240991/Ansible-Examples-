@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars:
+
+    env: dev
+
+  tasks:
+
+    - set_fact:
+        versions: "/usr/local/web/sites/helium-dev/docs/versions"
+      when: {{env}} == "dev"
+
+    - set_fact:
+        versions: "/usr/local/web/sites/helium-dev/docs/versions"
+      when: {{env}} == "uat"
+
+    - set_fact:
+        versions: "/usr/local/web/sites/helium-dev/docs/versions"
+      when: {{env}} == "buat"
+
+    - set_fact:
+        versions: "/usr/local/web/sites/helium-dev/docs/versions"
+      when: {{env}} == "prod"     
+
+

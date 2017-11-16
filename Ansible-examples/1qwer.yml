@@ -1,0 +1,7 @@
+---
+- hosts: all
+  connection: local
+  tasks:
+    - name: Creates directory
+      file: path=/home/u60945/saurabh_1
+            state=directory

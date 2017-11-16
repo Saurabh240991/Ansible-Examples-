@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  vars:
+    git_branch: "{{ GIT_BRANCH|default('develop') }}"
+    node_env: "{{ NODE_ENV|default('staging') }}"
+  tasks:
+    - command: echo "{{ node_env }}"
+      register: ps
+    - debug: var=ps.stdout
+        
+    - command: echo "{{ git_branch }}"
+      register: ps1
+    - debug: var=ps1.stdout

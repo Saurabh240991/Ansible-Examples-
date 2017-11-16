@@ -1,0 +1,12 @@
+---
+- hosts: all
+  connection: local
+  tasks:
+  - name: Ansible find file examples
+    find:
+      paths: /home/u60945/
+      patterns: "*.sh"
+    register: files_matched
+
+  - debug:
+      msg: "{{ files_matched.files }}"

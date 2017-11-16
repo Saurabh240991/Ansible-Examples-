@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    dir: /usr/local/mow/infra
+
+  tasks:
+  - name: checking directory exists or not
+    file:
+      path: '{{ dir }}'
+      state: directory
+
+  - name: finding the older files
+    find:
+      paths: '{{ dir }}'
+      age: 2d
+    register: list
+
+  - name: removing the files older than 90 days
+    file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items:
+      - "{{ list.files }}"
+
+  - stat: path=/tmp/saurabh.log
+    register: file_path
+
+  - file:
+      path: /tmp/saurabh.log
+      state: touch
+      force: no
+  - debug: msg="File not exists"
+    when: file_path.stat.exists != true
+
+  - debug:
+      msg="File exists"
+    when: file_path.stat.exists == true
+

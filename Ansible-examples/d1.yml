@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+   - stat: path=/tmp/saurabh.log
+     register: file_path
+        
+   - file:
+       path: /tmp/saurabh.log
+       state: touch
+       force: no         
+   - debug: msg="File not exists"
+     when: file_path.stat.exists != true
+         
+   - debug:
+       msg="File exists"
+     when: file_path.stat.exists == true

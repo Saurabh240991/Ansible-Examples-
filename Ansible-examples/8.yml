@@ -1,0 +1,7 @@
+- name: GIT Module
+  hosts: all
+  tasks:
+  - git:
+    repo: https://github.com/ansible/ansible-examples.git
+    dest: /home/u60945/src/ansible-examples
+    archive: /tmp/ansible-examples.zip

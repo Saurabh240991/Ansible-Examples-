@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: checking the pid of the process
+    shell: fuser /home/u60945/ 2> /dev/null | awk '{ print $1 }'
+    register: process_id
+    ignore_errors: True
+
+  - name: execute shell command
+    debug:
+      msg: "System {{ process_id.stdout }} has uuid {{ process_id.stdout }}" 

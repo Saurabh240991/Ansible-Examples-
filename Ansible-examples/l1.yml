@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  
+  vars:
+    env: dev
+
+  tasks:
+  
+  - name: Print message
+    debug: msg="Hello from version page dev !!!!"
+        set_fact:
+          versions: "/usr/local/web/sites/helium-dev/docs/versions"
+        when: {{env}} == "dev"  
+
+  - name: Print message
+    debug: msg="Hello from version page bau !!!!"
+        set_fact:
+          versions: "/usr/local/web/sites/helium-dev/docs/versions"
+        when: {{env}} == "bau"  
+
+  - name: Print message
+    debug: msg="Hello from version page uat !!!!"
+        set_fact:
+          versions: "/usr/local/web/sites/helium-dev/docs/versions"
+        when: {{env}} == "uat"  
+
+  - name: Print message
+    debug: msg="Hello from version page prod !!!!"
+        set_fact:
+           versions: "/usr/local/web/sites/helium-dev/docs/versions"
+        when: {{env}} == "prod" 
+
+

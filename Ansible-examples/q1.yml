@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+    - name: "Checking when"
+      include: 741.yml
+    when:
+      - ansible_distribution == "redhat"
+      - ansible_distribution_major_version == "6"

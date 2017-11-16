@@ -1,0 +1,5 @@
+---
+- name: GIT Module
+  hosts: all
+- include: po.yml
+  when: ansible_os_family == 'RedHat'

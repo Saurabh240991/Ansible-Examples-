@@ -1,0 +1,7 @@
+# playbook.yml without list based iterators
+# ---
+# - hosts: all
+#   tasks:
+#       - name: copy files
+#             copy: src=/home/u60945/60.sh dest=/tmp/new.txt
+#

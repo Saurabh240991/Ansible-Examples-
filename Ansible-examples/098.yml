@@ -1,0 +1,9 @@
+- name: show return value of command module
+  hosts: all
+  tasks:
+    - name: set fact
+      set_fact: foo="[ 'one', 'two', 'three']"
+
+    - name: debug
+      debug: msg={{ item }}
+      with_items: foo

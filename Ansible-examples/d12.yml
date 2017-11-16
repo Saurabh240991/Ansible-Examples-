@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+   - stat: path=/tmp/saurabh.log
+     register: file_path
+         
+   - debug: msg="File not exists"
+   - file:
+       path: /tmp/saurabh.log
+       state: touch
+       force: no        
+     when: file_path.stat.exists != true
+         
+   - debug:
+       msg="File exists"
+     when: file_path.stat.exists == true

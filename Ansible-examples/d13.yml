@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  tasks:
+  
+   - name: checking the file status 
+     stat: path=/tmp/saurabh.log
+     register: file_path
+         
+   - name: creating the file 
+     file:
+       path: /tmp/saurabh.log
+       state: touch
+       force: no        
+     debug: msg="File not exists"  
+     when: file_path.stat.exists != true
+         
+         
+   - name: file exists 
+     debug:
+       msg="File exists"
+     when: file_path.stat.exists == true

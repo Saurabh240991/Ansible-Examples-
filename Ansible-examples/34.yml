@@ -1,0 +1,35 @@
+---
+- name: test playbook
+  remote_user: root
+  hosts: all
+
+  tasks:
+
+      - shell: grep hi /etc/motd
+        ignore_errors: yes
+        register: motd_result
+
+
+      - shell: echo "motd contains the word hi"
+        when: motd_result.rc == 0
+
+
+
+      - shell: echo "motd contains the word hi"
+        when: motd_result.stdout.find('hi') != -1
+
+
+
+      - shell: echo "motd contains word hi"
+        when: "'hi' in motd_result.stdout"
+
+
+      - name: motd lines matching 'hi'
+        shell: echo "{{ item  }}"
+        with_items: motd_result.stdout_lines
+
+ 
+      - name: motd lines matching 'hi'
+        shell: echo "{{ item  }}"
+        with_items: motd_result.stdout.split('\n')
+

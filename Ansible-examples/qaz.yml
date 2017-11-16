@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+  - shell: echo "I've got '{{ foo }}' and am not afraid to use it!"
+    when: foo is defined
+        debug:
+    msg: '{{ ansible_all_ipv4_addresses }} {{ ansible_distribution_version }}'

@@ -1,0 +1,11 @@
+- name: check registered variable for emptiness
+  hosts: all
+
+  tasks:
+
+      - copy:
+         content: "Acquire::ForceIPv4 true;"
+         dest: "/home/u60945/saurabh.txt"
+
+
+                

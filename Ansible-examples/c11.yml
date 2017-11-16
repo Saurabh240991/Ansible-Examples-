@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - shell: grep "one|two|three|four" exit.txt
+      register: ps
+      ignore_errors: true
+
+    - debug: var=ps.stdout
+      when: ps.rc =="0"
+     
+

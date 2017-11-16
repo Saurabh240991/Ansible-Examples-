@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: Ansible find files in subdirectory examples
+    find:
+      paths: /home/u60945/
+      patterns: "*.sh"
+
+
+

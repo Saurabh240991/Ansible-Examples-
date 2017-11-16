@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+  - name: Ansible find files in subdirectory examples
+    find:
+      paths: /home/u60945/
+      patterns: "*.sh"
+      recurse: yes
+      register: files_matched_subdirectory
+
+  - debug:
+      msg: "{{ files_matched_subdirectory.files }}"

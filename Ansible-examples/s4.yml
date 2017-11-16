@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - shell: hostname
+      register: ps
+
+    - include: a15.yml
+      vars: 
+        NODE_ENV= saurabh
+        GIT_BRANCH= pal
+      when: ps.stdout =="ip-172-31-13-132.us-east-2.compute.internal"
+

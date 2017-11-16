@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+
+  pre_tasks:
+   - name : testing 
+     include: 145.yml
+     
+        
+  post_task: 
+    - name: checking 
+      include: done.yml   
+

@@ -1,0 +1,11 @@
+---
+- hosts: local
+  connection: local
+  gather_facts: true
+
+tasks:
+- shell: echo "I've got '{{ action }}' and am not afraid to use it!"
+  when: action is defined
+
+- fail: msg="Bailing out. this play requires 'action'"
+  when: action is not defined

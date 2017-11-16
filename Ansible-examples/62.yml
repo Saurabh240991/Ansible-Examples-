@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+ 
+    - name: run this command and ignore the result
+      shell: ping -c 1 8.8.8.8.6
+      register: pingout
+    - debug: msg="{{ pingout.stderr }}"
+
+

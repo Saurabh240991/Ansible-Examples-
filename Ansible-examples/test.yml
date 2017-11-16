@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: u60945
+  tasks:
+  - name: Print OS and version
+    debug:
+      msg: '{{ ansible_all_ipv4_addresses }} {{ ansible_distribution_version }}'

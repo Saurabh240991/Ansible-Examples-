@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  gather_facts: no
+  tasks:
+    - shell: hostname
+      register: ps
+    - set_fact:
+       env_var: something
+      when: ps.stdout ==""
+    - debug: var=env_var
+        
+    - set_fact:
+        env_var: something
+      when: ps.stdout =="ip-172-31-13-132.us-east-2.compute.internal"
+    - debug: var=env_var        
+          
+

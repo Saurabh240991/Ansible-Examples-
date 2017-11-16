@@ -1,0 +1,12 @@
+---
+
+  tasks:
+    - command: echo "{{ node_env }}"
+      register: ps
+    - debug: var=ps.stdout
+      when: NODE_ENV != "saurabh"
+        
+    - command: echo "{{ git_branch }}"
+      register: ps1
+    - debug: var=ps1.stdout
+
